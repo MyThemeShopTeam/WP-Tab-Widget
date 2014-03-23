@@ -29,7 +29,7 @@ See WP Tab Widget in action on our demo pages:
 * Show/Hide post excerpt
 * Position it anywhere where a widget is configured in your theme.
 
-## Developer Zone
+## Help to make it better
 
 MyThemeShop is a premium WordPress theme provider and we develop premium plugins in our free time and distribute them for free to give back to the community. Though we take a lot of care while developing anything, we might have missed something useful/important. Please help us make it better by submitting the bug/suggestions/feedback.
 
