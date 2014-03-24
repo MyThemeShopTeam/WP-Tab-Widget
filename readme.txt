@@ -12,7 +12,7 @@ WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it
 
 == Description ==
 
-We know you always loved those tab widgets which have that lazy loading effect in them. We at <a href="http://mythemeshop.com/">MyThemeShop</a> understand your need, and have developed a unique, cleanly coded, premium tab plugin. We are now distributing it for FREE to give back to the WordPress community. We have been given so much by the WordPres, it's the time to pay back.
+We know you always loved those tab widgets which have that lazy loading effect in them. We at <a href="http://mythemeshop.com/">MyThemeShop</a> understand your need, and have developed a unique, cleanly coded, premium tab plugin. We are now distributing it for FREE to give back to the WordPress community. We have been given so much by the WordPress, it's the time to pay back.
 
 **WP Tab plugin** is the only plugin you need to get the perfect tabs on your blog. We have made it AJAXified, so the content loads only when demanded, and thus it makes the plugin incredibly lightweight. It loads before you could even blink your eye. If you're a website owner, you always want your visitors to stay longer on your website. With WP Tab plugin, you could do it in a simple way. Install the plugin, configure the widget and let your visitors find the best content on your website in the sidebar without struggling to actually search for it.
 
@@ -30,7 +30,7 @@ See WP Tab Widget in action on our demo pages:
 * Change the number of tabs to show
 * Control the number of posts to show
 * Super light weight
-* In-built cache system, once a tab is laoded, it stays in the memory
+* In-built cache system, once a tab is loaded, it stays in the memory
 * Cool effects
 * Easy to modify the CSS to better fit your theme style
 * Choose between 3 unique styles of small, big or no thumbnails

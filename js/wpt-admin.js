@@ -1,3 +1,10 @@
+/*
+Plugin Name: WP Tab Widget
+Author: MyThemeShop
+Author URI: mythemeshop.com
+Version: 1.0
+*/
+
 jQuery(document).on('click', function(e) {
     var $this = jQuery(e.target);
     var $form = $this.closest('.wpt_options_form');

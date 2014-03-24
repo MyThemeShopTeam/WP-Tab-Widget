@@ -1,3 +1,9 @@
+/*
+Plugin Name: WP Tab Widget
+Author: MyThemeShop
+Author URI: mythemeshop.com
+*/
+
 function wpt_loadTabContent(tab_name, page_num, container, args_obj) {
     
     var container = jQuery(container);

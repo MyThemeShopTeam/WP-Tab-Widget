@@ -1,3 +1,10 @@
+/*
+Plugin Name: WP Tab Widget
+Author: MyThemeShop
+Author URI: mythemeshop.com
+Version: 1.0
+*/
+
 .wpt_widget_content {
     position: relative;
     border: 1px solid #E4E4E4;

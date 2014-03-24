@@ -1,5 +1,7 @@
 # WP Tab Widget by MyThemeShop
 
+Official Download Page [https://wordpress.org/plugins/wp-tab-widget/](https://wordpress.org/plugins/wp-tab-widget/)
+
 We know you always loved those tab widgets which have that lazy loading effect in them. We at [MyThemeShop](http://mythemeshop.com/) understand your need, and have developed a unique, cleanly coded, premium tab plugin. We are now distributing it for FREE to give back to the WordPress community. We have been given so much by the WordPres, it's the time to pay back.
 
 **WP Tab plugin** is the only plugin you need to get the perfect tabs on your blog. We have made it AJAXified, so the content loads only when demanded, and thus it makes the plugin incredibly lightweight. It loads before you could even blink your eye. If you're a website owner, you always want your visitors to stay longer on your website. With WP Tab plugin, you could do it in a simple way. Install the plugin, configure the widget and let your visitors find the best content on your website in the sidebar without struggling to actually search for it.
