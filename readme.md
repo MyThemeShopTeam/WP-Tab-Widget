@@ -42,6 +42,10 @@ Consider following us on [Google+](https://plus.google.com/+Mythemeshop/), [Twit
 
 ### Changelog
 
+#### 1.2
+* Added Title Length option
+* Fixed post view count compatibility with themes
+
 #### 1.1
 * Popular posts will be decided by number of views.
 * Added loading effect.

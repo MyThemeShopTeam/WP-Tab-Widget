@@ -4,7 +4,7 @@ Plugin Name: WP Tab Widget
 Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
 Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
 Author: MyThemeShop
-Version: 1.1
+Version: 1.2
 Author URI: http://mythemeshop.com/
 */
 
@@ -50,8 +50,24 @@ class wpt_widget extends WP_Widget {
     }  
     	
 	function form( $instance ) {
-		$instance = wp_parse_args( (array) $instance, array( 'tabs' => array('recent' => 1, 'popular' => 1, 'comments' => 0, 'tags' => 0), 'tab_order' => array('popular' => 1, 'recent' => 2, 'comments' => 3, 'tags' => 4), 'allow_pagination' => 1, 'post_num' => '5', 'comment_num' => '5', 'show_thumb' => 1, 'thumb_size' => 'small', 'show_date' => 1, 'show_excerpt' => 0, 'excerpt_length' => 10, 'show_comment_num' => 0, 'show_avatar' => 1) );
+		$instance = wp_parse_args( (array) $instance, array( 
+			'tabs' => array('recent' => 1, 'popular' => 1, 'comments' => 0, 'tags' => 0), 
+			'tab_order' => array('popular' => 1, 'recent' => 2, 'comments' => 3, 'tags' => 4), 
+			'allow_pagination' => 1, 
+			'post_num' => '5', 
+			'comment_num' => '5', 
+			'show_thumb' => 1, 
+			'thumb_size' => 'small', 
+			'show_date' => 1, 
+			'show_excerpt' => 0, 
+			'excerpt_length' => apply_filters( 'wpt_excerpt_length_default', '15' ), 
+			'show_comment_num' => 0, 
+			'show_avatar' => 1, 
+			'title_length' => apply_filters( 'wpt_title_length_default', '15' ) 
+		) );
+		
 		extract($instance);
+
 		?>
         <div class="wpt_options_form">
         
@@ -116,6 +132,13 @@ class wpt_widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('post_num'); ?>"><?php _e('Number of posts to show:', 'mts_wpt'); ?>
 				<br />
 				<input id="<?php echo $this->get_field_id('post_num'); ?>" name="<?php echo $this->get_field_name('post_num'); ?>" type="number" min="1" step="1" value="<?php echo $post_num; ?>" />
+			</label>
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id('title_length'); ?>"><?php _e('Title length (words):', 'mts_wpt'); ?>
+				<br />
+				<input id="<?php echo $this->get_field_id('title_length'); ?>" name="<?php echo $this->get_field_name('title_length'); ?>" type="number" min="1" step="1" value="<?php echo $title_length; ?>" />
 			</label>
 		</p>
 		
@@ -194,6 +217,7 @@ class wpt_widget extends WP_Widget {
         $instance['tab_order'] = $new_instance['tab_order'];  
 		$instance['allow_pagination'] = $new_instance['allow_pagination'];	
 		$instance['post_num'] = $new_instance['post_num'];	
+		$instance['title_length'] = $new_instance['title_length'];	
 		$instance['comment_num'] =  $new_instance['comment_num'];		
 		$instance['show_thumb'] = $new_instance['show_thumb'];     
 		$instance['thumb_size'] = $new_instance['thumb_size'];		
@@ -307,7 +331,9 @@ class wpt_widget extends WP_Widget {
 		}   
 		$show_comment_num = !empty($args['show_comment_num']);  
 		$show_avatar = !empty($args['show_avatar']);   
-		$allow_pagination = !empty($args['allow_pagination']);   
+		$allow_pagination = !empty($args['allow_pagination']);
+
+		$title_length = ! empty($args['title_length']) ? $args['title_length'] : apply_filters( 'wpt_title_length_default', '15' );
         
 		/* ---------- Tab Contents ---------- */    
 		switch ($tab) {        
@@ -332,7 +358,7 @@ class wpt_widget extends WP_Widget {
                                     </a>
 								</div>				
 							<?php endif; ?>					
-							<div class="entry-title"><a title="<?php the_title(); ?>" href="<?php the_permalink() ?>"><?php echo get_the_title(); ?></a></div>		
+							<div class="entry-title"><a title="<?php the_title(); ?>" href="<?php the_permalink() ?>"><?php echo $this->post_title( $title_length ); ?></a></div>		
 							<?php if ( $show_date == 1 || $show_comment_num == 1) : ?>	
 								<div class="wpt-postmeta">						
 									<?php if ( $show_date == 1 ) : ?>			
@@ -385,7 +411,7 @@ class wpt_widget extends WP_Widget {
                                     </a>
 								</div>				
 							<?php endif; ?>					
-							<div class="entry-title"><a title="<?php the_title(); ?>" href="<?php the_permalink() ?>"><?php echo get_the_title(); ?></a></div>		
+							<div class="entry-title"><a title="<?php the_title(); ?>" href="<?php the_permalink() ?>"><?php echo $this->post_title( $title_length ); ?></a></div>		
 							<?php if ( $show_date == 1 || $show_comment_num == 1) : ?>			
 								<div class="wpt-postmeta">										
 									<?php if ( $show_date == 1 ) : ?>						
@@ -432,24 +458,22 @@ class wpt_widget extends WP_Widget {
 					$offset = ($page-1) * $comment_num;         
 					$comments = $comments_query->query( array( 'number' => $comment_num, 'offset' => $offset, 'status' => 'approve' ) );    
 					if ( $comments ) : foreach ( $comments as $comment ) : ?>       
-						<li>                        
-							            
-								<?php if ($show_avatar) : ?>                       
-									<div class="wpt_avatar">
-                                        <a href="<?php echo get_comment_link($comment->comment_ID); ?>">
-    										<?php echo get_avatar( $comment->comment_author_email, $avatar_size ); ?>     
-                                        </a>                               
-									</div>                   
-								<?php endif; ?>              
-								<div class="wpt_comment_meta">
-                                    <a href="<?php echo get_comment_link($comment->comment_ID); ?>">   
-    									<span class="wpt_comment_author"><?php echo get_comment_author( $comment->comment_ID ); ?> </span> - <span class="wpt_comment_post"><?php echo get_the_title($comment->comment_post_ID); ?></span>                   
-								    </a>
-                                </div>                   
-								<div class="wpt_comment_content">          
-									<p><?php echo $this->truncate(strip_tags(apply_filters( 'get_comment_text', $comment->comment_content )), $comment_length);?></p>
+						<li>          
+							<?php if ($show_avatar) : ?>                       
+								<div class="wpt_avatar">
+                                    <a href="<?php echo get_comment_link($comment->comment_ID); ?>">
+										<?php echo get_avatar( $comment->comment_author_email, $avatar_size ); ?>     
+                                    </a>                               
 								</div>                   
-							</a>                
+							<?php endif; ?>              
+							<div class="wpt_comment_meta">
+                                <a href="<?php echo get_comment_link($comment->comment_ID); ?>">   
+									<span class="wpt_comment_author"><?php echo get_comment_author( $comment->comment_ID ); ?> </span> - <span class="wpt_comment_post"><?php echo get_the_title($comment->comment_post_ID); ?></span>                   
+							    </a>
+                            </div>                   
+							<div class="wpt_comment_content">          
+								<p><?php echo $this->truncate(strip_tags(apply_filters( 'get_comment_text', $comment->comment_content )), $comment_length);?></p>
+							</div>                                   
 							<div class="clear"></div>      
 						</li>           
 					<?php endforeach; else : ?>           
@@ -502,6 +526,7 @@ class wpt_widget extends WP_Widget {
 	}
     
     function excerpt($limit = 10) {
+    	  $limit++;
           $excerpt = explode(' ', get_the_excerpt(), $limit);
           if (count($excerpt)>=$limit) {
             array_pop($excerpt);
@@ -511,6 +536,17 @@ class wpt_widget extends WP_Widget {
           }
           $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
           return $excerpt;
+    }
+    function post_title($limit = 10) {
+    	  $limit++;
+          $title = explode(' ', get_the_title(), $limit);
+          if (count($title)>=$limit) {
+            array_pop($title);
+            $title = implode(" ",$title).'...';
+          } else {
+            $title = implode(" ",$title);
+          }
+          return $title;
     }
     function truncate($str, $length = 24) {
         if (mb_strlen($str) > $length) {
@@ -529,7 +565,7 @@ add_filter('the_content', 'wpt_view_count_js'); // outputs JS for AJAX call on s
 add_action('wp_ajax_wpt_view_count', 'ajax_wpt_view_count');
 add_action('wp_ajax_nopriv_wpt_view_count','ajax_wpt_view_count');
 // prevent additional ajax call if theme has view counter already
-add_action('mts_view_count_after_update', 'wpt_add_view_count'); 
+add_action('mts_view_count_after_update', 'wpt_update_view_count'); 
 
 function wpt_view_count_js( $content ) {
 	global $post;
