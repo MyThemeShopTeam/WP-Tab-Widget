@@ -1,10 +1,10 @@
 /*
 Plugin Name: WP Tab Widget
+Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
+Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
 Author: MyThemeShop
-Author URI: mythemeshop.com
-Version: 1.0
+Author URI: http://mythemeshop.com/
 */
-
 jQuery(document).on('click', function(e) {
     var $this = jQuery(e.target);
     var $form = $this.closest('.wpt_options_form');

@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: WP Tab Widget
-Plugin URI: http://mythemeshop.com/
+Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
 Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
 Author: MyThemeShop
-Version: 1.0
+Version: 1.1
 Author URI: http://mythemeshop.com/
 */
 
@@ -21,7 +21,7 @@ class wpt_widget extends WP_Widget {
         // css
         add_action('wp_enqueue_scripts', array(&$this, 'wpt_register_scripts'));
         add_action('admin_enqueue_scripts', array(&$this, 'wpt_admin_scripts'));
-		
+
 		$widget_ops = array('classname' => 'widget_wpt', 'description' => __('Display popular posts, recent posts, comments, and tags in tabbed format.', 'mts_wpt'));
 		$control_ops = array('width' => 300, 'height' => 350);
 		$this->WP_Widget('wpt_widget', __('WP Tab Widget by MyThemeShop', 'mts_wpt'), $widget_ops, $control_ops);
@@ -226,7 +226,7 @@ class wpt_widget extends WP_Widget {
         
 		?>	
 		<?php echo $before_widget; ?>	
-		<div class="wpt_widget_content" id="<?php echo $widget_id; ?>_content">		
+		<div class="wpt_widget_content" id="<?php echo $widget_id; ?>_content">	
 			<ul class="wpt-tabs <?php echo "has-$tabs_count-"; ?>tabs">
                 <?php foreach ($available_tabs as $tab => $label) { ?>
                     <?php if (!empty($tabs[$tab])): ?>
@@ -317,11 +317,11 @@ class wpt_widget extends WP_Widget {
 				?>       
 				<ul>				
 					<?php 
-					$popular = new WP_Query( array('ignore_sticky_posts' => 1, 'posts_per_page' => $post_num, 'post_status' => 'publish', 'orderby' => 'comment_count', 'order' => 'desc', 'paged' => $page));         
+					$popular = new WP_Query( array('ignore_sticky_posts' => 1, 'posts_per_page' => $post_num, 'post_status' => 'publish', 'orderby' => 'meta_value_num', 'meta_key' => '_wpt_view_count', 'order' => 'desc', 'paged' => $page));         
 					$last_page = $popular->max_num_pages;      
 					while ($popular->have_posts()) : $popular->the_post(); ?>	
-						<li>	
-							<?php if ( $show_thumb == 1 ) : ?>					
+						<li>
+							<?php if ( $show_thumb == 1 ) : ?>			
 								<div class="wpt_thumbnail wpt_thumb_<?php echo $thumb_size; ?>">	
                                     <a title="<?php the_title(); ?>" href="<?php the_permalink() ?>">		
     									<?php if(has_post_thumbnail()): ?>	
@@ -430,7 +430,7 @@ class wpt_widget extends WP_Widget {
 					$last_page = ceil($comments_total_number / $comment_num);       
 					$comments_query = new WP_Comment_Query();   
 					$offset = ($page-1) * $comment_num;         
-					$comments = $comments_query->query( array( 'number' => $comment_num, 'offset' => $offset ) );    
+					$comments = $comments_query->query( array( 'number' => $comment_num, 'offset' => $offset, 'status' => 'approve' ) );    
 					if ( $comments ) : foreach ( $comments as $comment ) : ?>       
 						<li>                        
 							            
@@ -519,8 +519,90 @@ class wpt_widget extends WP_Widget {
             return $str;
         }
     }
+
 }
 add_action( 'widgets_init', create_function( '', 'register_widget( "wpt_widget" );' ) );
+
+// post view count
+// AJAX is used to support caching plugins
+add_filter('the_content', 'wpt_view_count_js'); // outputs JS for AJAX call on single
+add_action('wp_ajax_wpt_view_count', 'ajax_wpt_view_count');
+add_action('wp_ajax_nopriv_wpt_view_count','ajax_wpt_view_count');
+// prevent additional ajax call if theme has view counter already
+add_action('mts_view_count_after_update', 'wpt_add_view_count'); 
+
+function wpt_view_count_js( $content ) {
+	global $post;
+	$id = $post->ID;
+	$use_ajax = apply_filters( 'mts_view_count_cache_support', true );
+	
+	$exclude_admins = apply_filters( 'mts_view_count_exclude_admins', false ); // pass in true or a user capaibility
+	if ($exclude_admins === true) $exclude_admins = 'edit_posts';
+	if ($exclude_admins && current_user_can( $exclude_admins )) return $content; // do not count post views here
+
+	if (is_single()) {
+		if ( ! has_filter('the_content', 'mts_view_count_js') && $use_ajax) { // prevent additional ajax call if theme has view counter already
+			// enqueue jquery
+			wp_enqueue_script( 'jquery' );
+			
+			$url = admin_url( 'admin-ajax.php' );
+			$content .= "
+<script type=\"text/javascript\">
+jQuery(document).ready(function($) {
+	$.post('{$url}', {action: 'wpt_view_count', id: '{$id}'});
+});
+</script>";
+			
+		}
+
+		// if there's no general filter set and ajax is OFF
+		if (! has_filter('the_content', 'mts_view_count_js') && ! $use_ajax) {
+			wpt_update_view_count($id);
+		}
+	} 
+
+	return $content;
+}
+
+
+
+function ajax_wpt_view_count() {
+	// do count
+	$post_id = $_POST['id'];
+	wpt_update_view_count( $post_id );
+}
+function wpt_update_view_count( $post_id ) {
+	$count = get_post_meta( $post_id, '_wpt_view_count', true );
+	update_post_meta( $post_id, '_wpt_view_count', $count + 1 );
+}
+
+// Add meta for all existing posts that don't have it
+// to make them show up in Popular tab
+function wpt_add_views_meta_for_posts() {
+	$allposts = get_posts( 'numberposts=-1&post_type=post&post_status=any' );
+
+	foreach( $allposts as $postinfo ) {
+		add_post_meta( $postinfo->ID, '_wpt_view_count', 0, true );
+	}
+}
+
+// Reset post count for specific post or all posts
+function wpt_reset_post_count($post_id = 0) {
+	if ($post_id == 0) {
+		$allposts = get_posts( 'numberposts=-1&post_type=post&post_status=any' );
+		foreach( $allposts as $postinfo ) {
+			update_post_meta( $postinfo->ID, '_wpt_view_count', '0' );
+		}
+	} else {
+		update_post_meta( $post_id, '_wpt_view_count', '0' );
+	}
+}
+
+// add post meta on plugin activation
+function wpt_plugin_activation() {
+	wpt_add_views_meta_for_posts();
+}
+register_activation_hook( __FILE__, 'wpt_plugin_activation' );
 
 // unregister MTS Tabs Widget and Tabs Widget v2
 add_action('widgets_init', 'unregister_mts_tabs_widget', 100);

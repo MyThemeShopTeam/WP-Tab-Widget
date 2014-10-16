@@ -1,9 +1,10 @@
 /*
 Plugin Name: WP Tab Widget
+Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
+Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
 Author: MyThemeShop
-Author URI: mythemeshop.com
+Author URI: http://mythemeshop.com/
 */
-
 function wpt_loadTabContent(tab_name, page_num, container, args_obj) {
     
     var container = jQuery(container);

@@ -1,4 +1,5 @@
 # WP Tab Widget by MyThemeShop
+Made with <3 from MyThemeShop LLC
 
 Official Download Page [https://wordpress.org/plugins/wp-tab-widget/](https://wordpress.org/plugins/wp-tab-widget/)
 
@@ -38,3 +39,14 @@ MyThemeShop is a premium WordPress theme provider and we develop premium plugins
 ## Connect with Us
 
 Consider following us on [Google+](https://plus.google.com/+Mythemeshop/), [Twitter](https://twitter.com/MyThemeShopTeam) and [Facebook](https://www.facebook.com/MyThemeShop).
+
+### Changelog
+
+#### 1.1
+* Popular posts will be decided by number of views.
+* Added loading effect.
+* Fixed small bugs.
+* Performance improvement.
+
+#### 1.0
+* Official plugin release.

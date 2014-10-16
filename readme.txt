@@ -3,8 +3,8 @@ Contributors: mythemeshop
 Creator's website link: http://mythemeshop.com/
 Tags: tabs, tab widget, recent posts tab, tabs widget, ajax tabs, ajax widget.
 Requires at least: 3.0.1
-Tested up to: 3.8.1
-Stable tag: 1.0
+Tested up to: 4.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,6 +74,12 @@ Please disable all plugins and check if shortcode plugin is working properly. Th
 2. WP Tab Widget
 
 == Changelog ==
+
+= 1.1 =
+* Popular posts will be decided by number of views.
+* Added loading effect.
+* Fixed small bugs.
+* Performance improvement.
 
 = 1.0 =
 * Official plugin release.

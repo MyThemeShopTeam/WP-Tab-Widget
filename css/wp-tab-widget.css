@@ -1,8 +1,9 @@
 /*
 Plugin Name: WP Tab Widget
+Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
+Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
 Author: MyThemeShop
-Author URI: mythemeshop.com
-Version: 1.0
+Author URI: http://mythemeshop.com/
 */
 
 .wpt_widget_content {
@@ -177,7 +178,10 @@ Version: 1.0
 }
 
 /* Loading... */
-.wpt-loading:after {
+.wpt-loading {
+    min-height: 120px;
+}
+.wpt-loading:before {
     content: "";
     display: block;
     position: absolute;
@@ -186,7 +190,49 @@ Version: 1.0
     bottom: 0;
     left: 0;
     background-color: rgba(255,255,255,0.8);
+    z-index: 11;
 }
 .clear {
     clear: both;
+}
+
+.wpt-loading:after {
+    content: "";
+    margin: 0 auto 3em auto;
+    font-size: 10px;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    z-index: 12;
+    text-indent: -9999em;
+    border-top: 0.4em solid rgba(0, 0, 0, 0.2);
+    border-right: 0.4em solid rgba(0, 0, 0, 0.2);
+    border-bottom: 0.4em solid rgba(0, 0, 0, 0.2);
+    border-left: 0.4em solid #000;
+    -webkit-animation: load8 0.5s infinite linear;
+    animation: load8 0.5s infinite linear;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
+
+@-webkit-keyframes load8 { 
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes load8 { 
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
