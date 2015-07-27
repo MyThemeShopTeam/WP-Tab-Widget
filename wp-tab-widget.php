@@ -51,8 +51,8 @@ class wpt_widget extends WP_Widget {
     	
 	function form( $instance ) {
 		$instance = wp_parse_args( (array) $instance, array( 
-			'tabs' => array('recent' => 1, 'popular' => 1, 'comments' => 0, 'tags' => 0), 
-			'tab_order' => array('popular' => 1, 'recent' => 2, 'comments' => 3, 'tags' => 4), 
+			'tabs' => array('recent' => 1, 'popular' => 1, 'comments' => 0, 'tags' => 0, 'cats' => 1), 
+			'tab_order' => array('popular' => 1, 'recent' => 2, 'comments' => 3, 'tags' => 4, 'cats' => 5), 
 			'allow_pagination' => 1, 
 			'post_num' => '5', 
 			'comment_num' => '5', 
@@ -82,13 +82,18 @@ class wpt_widget extends WP_Widget {
 				<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id("tabs"); ?>_recent" name="<?php echo $this->get_field_name("tabs"); ?>[recent]" value="1" <?php if (isset($tabs['recent'])) { checked( 1, $tabs['recent'], true ); } ?> />		
 				<?php _e( 'Recent Tab', 'mts_wpt'); ?>
 			</label>
-			<label class="alignleft" style="display: block; width: 50%;" for="<?php echo $this->get_field_id("tabs"); ?>_comments">
+			<label class="alignleft" style="display: block; width: 50%; margin-bottom: 5px;" for="<?php echo $this->get_field_id("tabs"); ?>_comments">
 				<input type="checkbox" class="checkbox wpt_enable_comments" id="<?php echo $this->get_field_id("tabs"); ?>_comments" name="<?php echo $this->get_field_name("tabs"); ?>[comments]" value="1" <?php if (isset($tabs['comments'])) { checked( 1, $tabs['comments'], true ); } ?> />
 				<?php _e( 'Comments Tab', 'mts_wpt'); ?>
 			</label>
-			<label class="alignleft" style="display: block; width: 50%;" for="<?php echo $this->get_field_id("tabs"); ?>_tags">
+			<label class="alignleft" style="display: block; width: 50%; margin-bottom: 5px;" for="<?php echo $this->get_field_id("tabs"); ?>_tags">
 				<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id("tabs"); ?>_tags" name="<?php echo $this->get_field_name("tabs"); ?>[tags]" value="1" <?php if (isset($tabs['tags'])) { checked( 1, $tabs['tags'], true ); } ?> />
 				<?php _e( 'Tags Tab', 'mts_wpt'); ?>
+			</label>
+			
+			<label class="alignleft" style="display: block; width: 50%; margin-bottom: 5px;" for="<?php echo $this->get_field_id("tabs"); ?>_cats">
+				<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id("cats"); ?>_cats" name="<?php echo $this->get_field_name("tabs"); ?>[cats]" value="1" <?php if (isset($tabs['cats'])) { checked( 1, $tabs['cats'], true ); } ?> />
+				<?php _e( 'Cats Tab', 'mts_wpt'); ?>
 			</label>
 		</div>
         <div class="clear"></div>
@@ -112,6 +117,10 @@ class wpt_widget extends WP_Widget {
             <label class="alignleft" for="<?php echo $this->get_field_id('tab_order'); ?>_tags" style="width: 50%;">
 				<input id="<?php echo $this->get_field_id('tab_order'); ?>_tags" name="<?php echo $this->get_field_name('tab_order'); ?>[tags]" type="number" min="1" step="1" value="<?php echo $tab_order['tags']; ?>" style="width: 48px;" />
 			    <?php _e('Tags', 'mts_wpt'); ?>
+            </label>
+            <label class="alignleft" for="<?php echo $this->get_field_id('tab_order'); ?>_cats" style="width: 50%;">
+            	<input id="<?php echo $this->get_field_id('tab_order'); ?>_cats" name="<?php echo $this->get_field_name('tab_order'); ?>[cats]" type="number" min="1" step="1" value="<?php echo $tab_order['cats']; ?>" style="width: 48px;" />
+                <?php _e('Cats', 'mts_wpt'); ?>
             </label>
         </div>
 		<div class="clear"></div>
@@ -244,6 +253,7 @@ class wpt_widget extends WP_Widget {
         $available_tabs = array('popular' => __('Popular', 'mts_wpt'), 
             'recent' => __('Recent', 'mts_wpt'), 
             'comments' => __('Comments', 'mts_wpt'), 
+            'cats' => __('Categories', 'mts_wpt'), 
             'tags' => __('Tags', 'mts_wpt'));
             
         array_multisort($tab_order, $available_tabs);
@@ -279,6 +289,13 @@ class wpt_widget extends WP_Widget {
 						<ul>                    	
 						</ul>			 
 					</div> <!--end #tags-tab-content-->  
+				<?php endif; ?>	
+				
+				<?php if (!empty($tabs['cats'])): ?>       
+					<div id="cats-tab-content" class="tab-content"> 	
+						<ul>                    	
+						</ul>			 
+					</div> <!--end #cats-tab-content-->  
 				<?php endif; ?>	
 				<div class="clear"></div>	
 			</div> <!--end .inside -->	
@@ -505,6 +522,30 @@ class wpt_widget extends WP_Widget {
 					}            
 					?>           
 				</ul>            
+				<?php            
+			break;  
+			
+			/* ---------- Categories ---------- */   
+			case "cats":        
+				?>           
+				<ul>         
+					<?php        
+					$cats = get_categories(array(
+					'orderby' => 'name',
+					'parent' => 0)
+					);             
+					if($cats) {               
+						foreach ($cats as $cat): ?>    
+							<li><a href="<?php echo get_term_link($cat); ?>"><?php echo $cat->name; ?></a></li>           
+							<?php            
+						endforeach;       
+					} else {          
+						_e('No Cats created.', 'mts_wpt');           
+					}            
+					?>           
+				</ul> 
+				<div class="clear"></div>		
+				           
 				<?php            
 			break;            
 		}              
