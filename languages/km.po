@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2014-03-24 01:53+0530\n"
 "Last-Translator: MyThemeShop <support-team@mythemeshop.com>\n"
 "Language-Team: MyThemeShop <support-team@mythemeshop.com>\n"
-"Language: en_US\n"
+"Language: km_KH\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,125 +18,125 @@ msgstr ""
 #: ../wp-tab-widget.php:25
 msgid ""
 "Display popular posts, recent posts, comments, and tags in tabbed format."
-msgstr ""
+msgstr "បង្ហាញ ប្រកាសពេញនិយម, ប្រកាសទើបថ្មី, មតិ, នឹងស្លាក ក្នុងទម្រង់ថេប។"
 
 #: ../wp-tab-widget.php:27
 msgid "WP Tab Widget by MyThemeShop"
-msgstr ""
+msgstr "វិដជិតWPថេប ដោយMyThemehop"
 
 #: ../wp-tab-widget.php:58
 msgid "Select Tabs"
-msgstr ""
+msgstr "ជម្រើស ថេប"
 
 #: ../wp-tab-widget.php:63
 msgid "Popular Tab"
-msgstr ""
+msgstr "ថេប ពេញនិយម"
 
 #: ../wp-tab-widget.php:67
 msgid "Recent Tab"
-msgstr ""
+msgstr "ថេប ទើបថ្មីៗ"
 
 #: ../wp-tab-widget.php:71
 msgid "Comments Tab"
-msgstr ""
+msgstr "ថេបមតិ"
 
 #: ../wp-tab-widget.php:75
 msgid "Tags Tab"
-msgstr ""
+msgstr "ថេបស្លាក"
 
 #: ../wp-tab-widget.php:80
 msgid "Tab Order"
-msgstr ""
+msgstr "លំដាប់ថេប"
 
 #: ../wp-tab-widget.php:86 ../wp-tab-widget.php:220
 msgid "Popular"
-msgstr ""
+msgstr "ពេញនិយម"
 
 #: ../wp-tab-widget.php:90 ../wp-tab-widget.php:221
 msgid "Recent"
-msgstr ""
+msgstr "ទើបថ្មីៗ"
 
 #: ../wp-tab-widget.php:94 ../wp-tab-widget.php:222 ../wp-tab-widget.php:345
 #: ../wp-tab-widget.php:398
 msgid "Comments"
-msgstr ""
+msgstr "មតិ"
 
 #: ../wp-tab-widget.php:98 ../wp-tab-widget.php:223
 msgid "Tags"
-msgstr ""
+msgstr "ស្លាក"
 
 #: ../wp-tab-widget.php:103
 msgid "Advanced Options"
-msgstr ""
+msgstr "ជម្រើស កំរិតខ្ពស់"
 
 #: ../wp-tab-widget.php:109
 msgid "Allow pagination"
-msgstr ""
+msgstr "អនុញ្ញាត ញែកជាទំព័រ"
 
 #: ../wp-tab-widget.php:116
 msgid "Number of posts to show:"
-msgstr ""
+msgstr "ចំនួននៃប្រកាស ទៅបង្ហាញ៖"
 
 #: ../wp-tab-widget.php:125
 msgid "Show post thumbnails"
-msgstr ""
+msgstr "បង្ហាញ ប្រកាសកូនរូបភាព"
 
 #: ../wp-tab-widget.php:130
 msgid "Thumbnail size:"
-msgstr ""
+msgstr "ទំហំ កូនរូបភាព៖"
 
 #: ../wp-tab-widget.php:132
 msgid "Small"
-msgstr ""
+msgstr "តូច"
 
 #: ../wp-tab-widget.php:133
 msgid "Large"
-msgstr ""
+msgstr "ប្រវែង"
 
 #: ../wp-tab-widget.php:140
 msgid "Show post date"
-msgstr ""
+msgstr "បង្ហាញ កាលបរិច្ឆេទប្រកាស"
 
 #: ../wp-tab-widget.php:147
 msgid "Show number of comments"
-msgstr ""
+msgstr "បង្ហាញ ចំនួននៃមតិ"
 
 #: ../wp-tab-widget.php:154
 msgid "Show post excerpt"
-msgstr ""
+msgstr "បង្ហាញ សម្រង់ប្រកាស"
 
 #: ../wp-tab-widget.php:160
 msgid "Excerpt length (words):"
-msgstr ""
+msgstr "សម្រង់ប្រវែង (ពាក្យ)៖"
 
 #: ../wp-tab-widget.php:173
 msgid "Number of comments on Comments Tab:"
-msgstr ""
+msgstr "ចំនួននៃមតិ លើថេបមតិ៖"
 
 #: ../wp-tab-widget.php:182
 msgid "Show avatars on Comments Tab"
-msgstr ""
+msgstr "បង្ហាញអវតា លើថេបមតិ"
 
 #: ../wp-tab-widget.php:345 ../wp-tab-widget.php:398
 msgid "No Comment"
-msgstr ""
+msgstr "មិនមានមតិ"
 
 #: ../wp-tab-widget.php:345 ../wp-tab-widget.php:398
 msgid "One Comment"
-msgstr ""
+msgstr "១ មតិ"
 
 #: ../wp-tab-widget.php:457
 msgid "No comments yet."
-msgstr ""
+msgstr "មិនទាន់មានមតិទេ។"
 
 #: ../wp-tab-widget.php:480
 msgid "No tags created."
-msgstr ""
+msgstr "គ្មានស្លាកដែលបង្កើត។"
 
 #: ../wp-tab-widget.php:493
 msgid "&laquo; Previous"
-msgstr ""
+msgstr "&raquo; ពីមុន"
 
 #: ../wp-tab-widget.php:496
 msgid "Next &raquo;"
-msgstr ""
+msgstr "បន្ទាប់ &raquo;"
