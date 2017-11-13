@@ -101,40 +101,40 @@ add_filter( 'wpt_sampling_rate', 'wpt_my_sampling_rate' );
 
 == Changelog ==
 
-= 1.2.7 =
-* Added new `wpt_sampling_rate` filter. See the FAQ section on how this works.
+= 1.2.7 (Feb 03, 2017) =
+* Added new wpt_sampling_rate filter. See the FAQ section on how this works.
 
-= 1.2.6 =
+= 1.2.6 (Jan 28, 2017) =
 * Updated view counter function
 
-= 1.2.5 =
+= 1.2.5 (Apr 06, 2016) =
 * Added missing Pro version image
 
-= 1.2.4 =
-* Replaced "comm" CSS class with "comments-number" on comment count in Recent tab
-* Added "Show Some Love" option
+= 1.2.4 (Mar 27, 2016) =
+* Replaced “comm” CSS class with “comments-number” on comment count in Recent tab
+* Added “Show Some Love” option
 
-= 1.2.3 =
-* Fixed issue where tab content couldn't be loaded on servers with non UTF8 character encoding
+= 1.2.3 (Mar 22, 2016) =
+* Fixed issue where tab content couldn’t be loaded on servers with non UTF8 character encoding
 * List only comments from default comment type in Comments tab
 * Prevent conflict with Pro version
 * Added Notification & Banner for Pro Version
 
-= 1.2.2 =
+= 1.2.2 (Aug 21, 2015) =
 * Changed text domain to make plugin compatible with WordPress Language Packs
 
-= 1.2.1 =
+= 1.2.1 (Aug 19, 2015) =
 * Switched to PHP 5 style constructor method for the widget class
 
-= 1.2 =
+= 1.2 (Oct 15, 2014) =
 * Added Title Length option
 * Fixed post view count compatibility with themes
 
-= 1.1 =
-* Popular posts will be decided by number of views.
-* Added loading effect.
-* Fixed small bugs.
-* Performance improvement.
+= 1.1 (Oct 1, 2014) =
+* Popular posts will be decided by number of views
+* Added loading effect
+* Fixed small bugs
+* Performance improvement
 
-= 1.0 =
-* Official plugin release.
+= 1.0 (Mar 24, 2014) =
+* Plugin released
