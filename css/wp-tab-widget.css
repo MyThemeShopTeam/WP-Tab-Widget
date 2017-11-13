@@ -236,3 +236,10 @@ Author URI: http://mythemeshop.com/
         transform: rotate(360deg);
     }
 }
+
+.wpt_show_love {
+    font-size: 12px;
+    font-style: italic;
+    padding: 5px;
+    margin: 0 10px;
+}

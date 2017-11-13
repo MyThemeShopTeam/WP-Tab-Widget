@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Tab Widget by MyThemeShop\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-24 01:53+0530\n"
-"PO-Revision-Date: 2014-03-24 01:53+0530\n"
+"POT-Creation-Date: 2016-03-27 16:20+0100\n"
+"PO-Revision-Date: 2016-03-27 16:20+0100\n"
 "Last-Translator: MyThemeShop <support-team@mythemeshop.com>\n"
 "Language-Team: MyThemeShop <support-team@mythemeshop.com>\n"
 "Language: en_US\n"
@@ -12,131 +12,154 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.6.2\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../wp-tab-widget.php:25
-msgid ""
-"Display popular posts, recent posts, comments, and tags in tabbed format."
+msgid "Display popular posts, recent posts, comments, and tags in tabbed format."
 msgstr ""
 
 #: ../wp-tab-widget.php:27
 msgid "WP Tab Widget by MyThemeShop"
 msgstr ""
 
-#: ../wp-tab-widget.php:58
+#: ../wp-tab-widget.php:75
 msgid "Select Tabs"
 msgstr ""
 
-#: ../wp-tab-widget.php:63
+#: ../wp-tab-widget.php:80
 msgid "Popular Tab"
 msgstr ""
 
-#: ../wp-tab-widget.php:67
+#: ../wp-tab-widget.php:84
 msgid "Recent Tab"
 msgstr ""
 
-#: ../wp-tab-widget.php:71
+#: ../wp-tab-widget.php:88
 msgid "Comments Tab"
 msgstr ""
 
-#: ../wp-tab-widget.php:75
+#: ../wp-tab-widget.php:92
 msgid "Tags Tab"
 msgstr ""
 
-#: ../wp-tab-widget.php:80
+#: ../wp-tab-widget.php:97
 msgid "Tab Order"
 msgstr ""
 
-#: ../wp-tab-widget.php:86 ../wp-tab-widget.php:220
+#: ../wp-tab-widget.php:103 ../wp-tab-widget.php:253
 msgid "Popular"
 msgstr ""
 
-#: ../wp-tab-widget.php:90 ../wp-tab-widget.php:221
+#: ../wp-tab-widget.php:107 ../wp-tab-widget.php:254
 msgid "Recent"
 msgstr ""
 
-#: ../wp-tab-widget.php:94 ../wp-tab-widget.php:222 ../wp-tab-widget.php:345
-#: ../wp-tab-widget.php:398
+#: ../wp-tab-widget.php:111 ../wp-tab-widget.php:255 ../wp-tab-widget.php:395
+#: ../wp-tab-widget.php:448
 msgid "Comments"
 msgstr ""
 
-#: ../wp-tab-widget.php:98 ../wp-tab-widget.php:223
+#: ../wp-tab-widget.php:115 ../wp-tab-widget.php:256
 msgid "Tags"
 msgstr ""
 
-#: ../wp-tab-widget.php:103
+#: ../wp-tab-widget.php:120
 msgid "Advanced Options"
 msgstr ""
 
-#: ../wp-tab-widget.php:109
+#: ../wp-tab-widget.php:126
 msgid "Allow pagination"
 msgstr ""
 
-#: ../wp-tab-widget.php:116
+#: ../wp-tab-widget.php:133
 msgid "Number of posts to show:"
 msgstr ""
 
-#: ../wp-tab-widget.php:125
+#: ../wp-tab-widget.php:140
+msgid "Title length (words):"
+msgstr ""
+
+#: ../wp-tab-widget.php:149
 msgid "Show post thumbnails"
 msgstr ""
 
-#: ../wp-tab-widget.php:130
+#: ../wp-tab-widget.php:154
 msgid "Thumbnail size:"
 msgstr ""
 
-#: ../wp-tab-widget.php:132
+#: ../wp-tab-widget.php:156
 msgid "Small"
 msgstr ""
 
-#: ../wp-tab-widget.php:133
+#: ../wp-tab-widget.php:157
 msgid "Large"
 msgstr ""
 
-#: ../wp-tab-widget.php:140
+#: ../wp-tab-widget.php:164
 msgid "Show post date"
 msgstr ""
 
-#: ../wp-tab-widget.php:147
+#: ../wp-tab-widget.php:171
 msgid "Show number of comments"
 msgstr ""
 
-#: ../wp-tab-widget.php:154
+#: ../wp-tab-widget.php:178
 msgid "Show post excerpt"
 msgstr ""
 
-#: ../wp-tab-widget.php:160
+#: ../wp-tab-widget.php:184
 msgid "Excerpt length (words):"
 msgstr ""
 
-#: ../wp-tab-widget.php:173
+#: ../wp-tab-widget.php:197
 msgid "Number of comments on Comments Tab:"
 msgstr ""
 
-#: ../wp-tab-widget.php:182
+#: ../wp-tab-widget.php:206
 msgid "Show avatars on Comments Tab"
 msgstr ""
 
-#: ../wp-tab-widget.php:345 ../wp-tab-widget.php:398
+#: ../wp-tab-widget.php:214
+msgid "Show Some Love (Powered by Tab Widget Pro)"
+msgstr ""
+
+#: ../wp-tab-widget.php:296
+msgid "Powered by WP Tab Widget"
+msgstr ""
+
+#: ../wp-tab-widget.php:331
+msgid "Unable to load tab content"
+msgstr ""
+
+#: ../wp-tab-widget.php:395 ../wp-tab-widget.php:448
 msgid "No Comment"
 msgstr ""
 
-#: ../wp-tab-widget.php:345 ../wp-tab-widget.php:398
+#: ../wp-tab-widget.php:395 ../wp-tab-widget.php:448
 msgid "One Comment"
 msgstr ""
 
-#: ../wp-tab-widget.php:457
+#: ../wp-tab-widget.php:512
 msgid "No comments yet."
 msgstr ""
 
-#: ../wp-tab-widget.php:480
+#: ../wp-tab-widget.php:535
 msgid "No tags created."
 msgstr ""
 
-#: ../wp-tab-widget.php:493
+#: ../wp-tab-widget.php:548
 msgid "&laquo; Previous"
 msgstr ""
 
-#: ../wp-tab-widget.php:496
+#: ../wp-tab-widget.php:551
 msgid "Next &raquo;"
+msgstr ""
+
+#: ../wp-tab-widget.php:690
+msgid "Like WP Tab Widget? You will <strong>LOVE WP Tab Widget Pro</strong>!"
+msgstr ""
+
+#: ../wp-tab-widget.php:690
+msgid "Click here for all the exciting features."
 msgstr ""

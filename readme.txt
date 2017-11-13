@@ -2,9 +2,9 @@
 Contributors: mythemeshop
 Creator's website link: http://mythemeshop.com/
 Tags: tabs, tab widget, recent posts tab, tabs widget, ajax tabs, ajax widget.
-Requires at least: 3.0.1
-Tested up to: 4.0
-Stable tag: 1.2
+Requires at least: 4.0
+Tested up to: 4.8.3
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,14 +40,26 @@ See WP Tab Widget in action on our demo pages:
 * Position it anywhere where a widget is configured in your theme.
 
 = Support =
-We will do our best to provide support through the WordPress forums. However, all plugin support is provided in our forum. If you have not registered yet, you can do so here: <a href="https://mythemeshop.com/go/signup/index/c/free">https://mythemeshop.com/go/signup/index/c/free</a>. After searching the knowledge base and forum if you are still stuck, feel free to open a new thread, and a member of our support team will be happy to help. Cheers!<br>
-Support link: <a href="http://community.mythemeshop.com/forum/free/plugin-support">http://community.mythemeshop.com/forum/free/plugin-support</a>
+
+All support for this plugin is provided through our forums. If you have not registered yet, you can do so here for **FREE** <br>
+<a href=“https://mythemeshop.com/#signup”>https://mythemeshop.com/#signup</a>
+
+If after checking our Free WordPress video tutorials here:<br>
+<a href=“https://mythemeshop.com/wordpress-101/”>https://mythemeshop.com/wordpress-101/</a><br>
+&<br>
+<a href=“https://community.mythemeshop.com/tutorials/category/2-free-video-tutorials/“>https://community.mythemeshop.com/tutorials/category/2-free-video-tutorials/</a><br>
+<br>
+you are still stuck, please feel free to open a new thread, and a member of our support team will be happy to help.<br>
+
+Support link:<br>
+<a href=“https://community.mythemeshop.com/forum/11-free-plugin-support/”>https://community.mythemeshop.com/forum/11-free-plugin-support/</a><br>
+<br>
 
 = Help to make it better =
 
 MyThemeShop is a premium WordPress theme provider and we develop premium plugins in our free time and distribute them for free to give back to the community. Though we take a lot of care while developing anything, we might have missed something useful/important. Please help us make it better by submitting the bug/suggestions/feedback on GitHub.
 
-GitHub link: <a href="https://github.com/MyThemeShop/WP-Tab-Widget-by-MyThemeShop">https://github.com/MyThemeShop/WP-Tab-Widget-by-MyThemeShop</a>
+GitHub link: <a href="https://github.com/MyThemeShopTeam/WP-Tab-Widget">https://github.com/MyThemeShopTeam/WP-Tab-Widget</a>
 
 = Feedback =
 If you like this plugin, then please leave us a good rating and review.<br> Consider following us on <a rel="author" href="https://plus.google.com/+Mythemeshop/">Google+</a>, <a href="https://twitter.com/MyThemeShopTeam">Twitter</a>, and <a href="https://www.facebook.com/MyThemeShop">Facebook</a> 
@@ -68,12 +80,51 @@ This section describes how to install the plugin and get it working.
 
 Please disable all plugins and check if shortcode plugin is working properly. Then you can enable all plugins one by one to find out which plugin is conflicting with plugin.
 
+= Plugins is consuming too much resources =
+
+The pageview is incremented on the database everytime a user visits a page but this can start getting quite expensive on high-traffic websites. We've added the filter `wpt_sampling_rate` which you can use to lower the sampling rate from the default <strong>100%</strong>. Note that setting this value too low will result to innacurate pageviews.
+
+`
+<?php
+
+function wpt_my_sampling_rate( $rate ) {
+    // Reduce the percentage of pageviews recorded to 80%.
+    return 80;
+}
+add_filter( 'wpt_sampling_rate', 'wpt_my_sampling_rate' );
+`
+
 == Screenshots ==
 
 1. WP Tab Widget Settings
 2. WP Tab Widget
 
 == Changelog ==
+
+= 1.2.7 =
+* Added new `wpt_sampling_rate` filter. See the FAQ section on how this works.
+
+= 1.2.6 =
+* Updated view counter function
+
+= 1.2.5 =
+* Added missing Pro version image
+
+= 1.2.4 =
+* Replaced "comm" CSS class with "comments-number" on comment count in Recent tab
+* Added "Show Some Love" option
+
+= 1.2.3 =
+* Fixed issue where tab content couldn't be loaded on servers with non UTF8 character encoding
+* List only comments from default comment type in Comments tab
+* Prevent conflict with Pro version
+* Added Notification & Banner for Pro Version
+
+= 1.2.2 =
+* Changed text domain to make plugin compatible with WordPress Language Packs
+
+= 1.2.1 =
+* Switched to PHP 5 style constructor method for the widget class
 
 = 1.2 =
 * Added Title Length option
