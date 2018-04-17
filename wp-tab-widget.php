@@ -316,8 +316,8 @@ if ( !class_exists('wpt_widget') ) {
 		function ajax_wpt_widget_content() {     
 			$tab = $_POST['tab'];       
 			$args = $_POST['args'];  
-	    	$number = intval( $_POST['widget_number'] );
-			$page = intval($_POST['page']);    
+			$number = isset( $_POST['widget_number'] ) ? intval( $_POST['widget_number'] ) : '';
+			$page = isset( $_POST['page'] ) ? intval( $_POST['page'] ) : '';    
 			if ($page < 1)        
 				$page = 1;
 
@@ -334,30 +334,29 @@ if ( !class_exists('wpt_widget') ) {
 	    	
 	        
 			// sanitize args		
-			$post_num = (empty($args['post_num']) ? 5 : intval($args['post_num']));    
+			$post_num = (!isset($args['post_num']) ? 5 : intval($args['post_num']));    
 			if ($post_num > 20 || $post_num < 1) { // max 20 posts
 				$post_num = 5;   
 			}      
-			$comment_num = (empty($args['comment_num']) ? 5 : intval($args['comment_num']));   
+			$comment_num = (!isset($args['comment_num']) ? 5 : intval($args['comment_num']));   
 			if ($comment_num > 20 || $comment_num < 1) {  
 				$comment_num = 5;    
 			}       
-			$show_thumb = !empty($args['show_thumb']);
-			$thumb_size = $args['thumb_size'];
-	        if ($thumb_size != 'small' && $thumb_size != 'large') {
-	            $thumb_size = 'small'; // default
-	        }
-			$show_date = !empty($args['show_date']);     
-			$show_excerpt = !empty($args['show_excerpt']);  
-			$excerpt_length = intval($args['excerpt_length']);
-	        if ($excerpt_length > 50 || $excerpt_length < 1) {  
+			$show_thumb = isset( $args['show_thumb'] ) ? $args['show_thumb'] : 0;
+			$thumb_size = isset( $args['thumb_size'] ) ? $args['thumb_size'] : 'small';
+			if ($thumb_size != 'small' && $thumb_size != 'large') {
+					$thumb_size = 'small'; // default
+			}
+			$show_date = isset( $args['show_date'] ) ? $args['show_date'] : 1;      
+			$show_excerpt = isset( $args['show_excerpt'] ) ? $args['show_excerpt'] : 1;
+			$excerpt_length = isset( $args['excerpt_length'] ) ? intval( $args['excerpt_length'] ) : 15;
+	    if ($excerpt_length > 50 || $excerpt_length < 1) {  
 				$excerpt_length = 10;   
-			}   
-			$show_comment_num = !empty($args['show_comment_num']);  
-			$show_avatar = !empty($args['show_avatar']);   
-			$allow_pagination = !empty($args['allow_pagination']);
-
-			$title_length = ! empty($args['title_length']) ? $args['title_length'] : apply_filters( 'wpt_title_length_default', '15' );
+			}     
+			$show_comment_num = isset( $args['show_comment_num'] ) ? $args['show_comment_num'] : 0;   
+			$show_avatar = isset( $args['show_avatar'] ) ? $args['show_avatar'] : 0;
+			$allow_pagination = isset( $args['allow_pagination'] ) ? $args['allow_pagination'] : 0;
+			$title_length = !isset($args['title_length']) ? $args['title_length'] : apply_filters( 'wpt_title_length_default', '15' );
 	        
 			/* ---------- Tab Contents ---------- */    
 			switch ($tab) {        
