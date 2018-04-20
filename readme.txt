@@ -62,7 +62,7 @@ MyThemeShop is a premium WordPress theme provider and we develop premium plugins
 GitHub link: <a href="https://github.com/MyThemeShopTeam/WP-Tab-Widget">https://github.com/MyThemeShopTeam/WP-Tab-Widget</a>
 
 = Feedback =
-If you like this plugin, then please leave us a good rating and review.<br> Consider following us on <a rel="author" href="https://plus.google.com/+Mythemeshop/">Google+</a>, <a href="https://twitter.com/MyThemeShopTeam">Twitter</a>, and <a href="https://www.facebook.com/MyThemeShop">Facebook</a> 
+If you like this plugin, then please leave us a good rating and review.<br> Consider following us on <a rel="author" href="https://plus.google.com/+Mythemeshop/">Google+</a>, <a href="https://twitter.com/MyThemeShopTeam">Twitter</a>, and <a href="https://www.facebook.com/MyThemeShop">Facebook</a>
 
 == Installation ==
 
@@ -101,7 +101,7 @@ add_filter( 'wpt_sampling_rate', 'wpt_my_sampling_rate' );
 
 == Changelog ==
 
-= 1.2.8 (April 15, 2018) =
+= 1.2.8 (Apr 20, 2018) =
 * Fixed compatibility with PHP 7
 * Checked compatibility with WordPress v4.9.5
 * Improved Code
