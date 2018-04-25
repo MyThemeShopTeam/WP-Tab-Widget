@@ -4,7 +4,7 @@ Plugin Name: WP Tab Widget
 Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
 Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
 Author: MyThemeShop
-Version: 1.2.8
+Version: 1.2.9
 Author URI: http://mythemeshop.com/
 */
 if ( !class_exists('wpt_widget') ) {
@@ -587,8 +587,10 @@ if ( !class_exists('wpt_widget') ) {
 	    }
 	}
 }
-add_action( 'widgets_init', create_function( '', 'register_widget( "wpt_widget" );' ) );
-
+add_action( 'widgets_init', 'mts_wpt_widget' );
+function mts_wpt_widget(){
+	register_widget( "wpt_widget" );
+}
 // post view count
 // AJAX is used to support caching plugins
 add_filter('the_content', 'wpt_view_count_js'); // outputs JS for AJAX call on single

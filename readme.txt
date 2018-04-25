@@ -101,6 +101,9 @@ add_filter( 'wpt_sampling_rate', 'wpt_my_sampling_rate' );
 
 == Changelog ==
 
+= 1.2.9 (Apr 24, 2018) =
+* Improved Code
+
 = 1.2.8 (Apr 20, 2018) =
 * Fixed compatibility with PHP 7
 * Checked compatibility with WordPress v4.9.5
