@@ -4,7 +4,7 @@ Creator's website link: http://mythemeshop.com/
 Tags: tabs, tab widget, recent posts tab, tabs widget, ajax tabs, ajax widget.
 Requires at least: 4.0
 Tested up to: 4.9.5
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,9 @@ add_filter( 'wpt_sampling_rate', 'wpt_my_sampling_rate' );
 2. WP Tab Widget
 
 == Changelog ==
+
+= 1.2.9 [June 29, 2018] =
+* Updated admin notices
 
 = 1.2.8 (Apr 20, 2018) =
 * Fixed compatibility with PHP 7
