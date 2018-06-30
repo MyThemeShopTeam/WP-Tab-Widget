@@ -4,7 +4,7 @@ Plugin Name: WP Tab Widget
 Plugin URI: http://mythemeshop.com/plugins/wp-tab-widget/
 Description: WP Tab Widget is the AJAXified plugin which loads content by demand, and thus it makes the plugin incredibly lightweight.
 Author: MyThemeShop
-Version: 1.2.9
+Version: 1.2.10
 Author URI: http://mythemeshop.com/
 */
 if ( !class_exists('wpt_widget') ) {
@@ -34,8 +34,6 @@ if ( !class_exists('wpt_widget') ) {
 	        add_image_size( 'wp_review_large', 320, 240, true ); // large thumb
 	    }
 	    function wpt_admin_scripts($hook) {
-	        if ($hook != 'widgets.php')
-	            return;
 	        wp_register_script('wpt_widget_admin', plugins_url('js/wpt-admin.js', __FILE__), array('jquery'));
 	        wp_enqueue_script('wpt_widget_admin');
 	    }
@@ -587,7 +585,10 @@ if ( !class_exists('wpt_widget') ) {
 	    }
 	}
 }
-add_action( 'widgets_init', create_function( '', 'register_widget( "wpt_widget" );' ) );
+
+add_action('widgets_init', function(){
+	return register_widget('wpt_widget');
+});
 
 // post view count
 // AJAX is used to support caching plugins
@@ -683,10 +684,10 @@ function wp_tab_widget_admin_notice() {
     global $current_user ;
     $user_id = $current_user->ID;
     /* Check that the user hasn't already clicked to ignore the message */
-    if ( ! get_user_meta($user_id, 'wp_tab_widget_ignore_notice') ) {
+    if ( ! get_user_meta($user_id, 'wp_tab_widget_ignore_notice')  && time() >= (get_option( 'wp_tab_widget_activated', 0 ) + (2 * 24 * 60 * 60)) ) {
         echo '<div class="updated notice-info wp-tab-widget-pro-notice" style="position:relative;"><p>';
-        printf(__('Like WP Tab Widget? You will <strong>LOVE WP Tab Widget Pro</strong>!','wp-tab-widget').'<a href="https://mythemeshop.com/plugins/wp-tab-widget-pro/?utm_source=WP+Tab+Widget+Free&utm_medium=Notification+Link&utm_content=WP+Tab+Widget+Pro+LP&utm_campaign=WordPressOrg&wpmts" target="_blank">&nbsp;'.__('Click here for all the exciting features.','wp-tab-widget').'</a><a href="%1$s" class="dashicons dashicons-dismiss dashicons-dismiss-icon" style="position: absolute; top: 8px; right: 8px; color: #222; opacity: 0.4; text-decoration: none !important;"></a>', '?wp_tab_widget_notice_ignore=0');
-        echo "</p></div>";
+        echo __('Like WP Tab Widget? You will <strong>LOVE WP Tab Widget Pro</strong>!','wp-tab-widget').'<a href="https://mythemeshop.com/plugins/wp-tab-widget-pro/?utm_source=WP+Tab+Widget+Free&utm_medium=Notification+Link&utm_content=WP+Tab+Widget+Pro+LP&utm_campaign=WordPressOrg&wpmts" target="_blank">&nbsp;'.__('Click here for all the exciting features.','wp-tab-widget').'</a></p><a href="%1$s" class="dashicons dashicons-dismiss dashicons-dismiss-icon tabwidget-notice-dismiss" data-ignore="0"  style="position: absolute; top: 8px; right: 8px; color: #222; opacity: 0.4; text-decoration: none !important;"></a>';
+        echo "</div>";
     }
 
     /* Other notice appears right after activating */
@@ -698,21 +699,20 @@ function wp_tab_widget_admin_notice() {
 			echo '<p>';
 			_e('Thank you for trying WP Tab Widget. We hope you will like it.', 'wp-tab-widget');
 			echo '</p>';
-			echo '<a class="notice-dismiss" href="?wp_tab_widget_notice_ignore=0"></a>';
+			echo '<a class="notice-dismiss tabwidget-notice-dismiss" data-ignore="1" href="#"></a>';
 			echo "</div>";
 		}
 }
 
-add_action('admin_init', 'wp_tab_widget_notice_ignore');
-function wp_tab_widget_notice_ignore() {
-	global $current_user;
+add_action('wp_ajax_mts_dismiss_tabwidget_notice', function(){
+  global $current_user;
   $user_id = $current_user->ID;
   /* If user clicks to ignore the notice, add that to their user meta */
-  if ( isset($_GET['wp_tab_widget_notice_ignore']) ) {
-		if ( '0' == $_GET['wp_tab_widget_notice_ignore'] ) {
-			add_user_meta($user_id, 'wp_tab_widget_ignore_notice', '1', true);
-		} elseif ( '1' == $_GET['wp_tab_widget_notice_ignore'] ) {
-			add_user_meta($user_id, 'wp_tab_widget_ignore_notice_2', '1', true);
-		}
-	}
-}
+  if ( isset($_POST['dismiss']) ) {
+    if ( '0' == $_POST['dismiss'] ) {
+      add_user_meta($user_id, 'wp_tab_widget_ignore_notice', '1', true);
+    } elseif ( '1' == $_POST['dismiss'] ) {
+      add_user_meta($user_id, 'wp_tab_widget_ignore_notice_2', '1', true);
+    }
+  }
+});
