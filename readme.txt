@@ -3,8 +3,8 @@ Contributors: mythemeshop
 Creator's website link: http://mythemeshop.com/
 Tags: tabs, tab widget, recent posts tab, tabs widget, ajax tabs, ajax widget.
 Requires at least: 4.0
-Tested up to: 4.9.5
-Stable tag: 1.2.10
+Tested up to: 5.5.3
+Stable tag: 1.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,10 @@ add_filter( 'wpt_sampling_rate', 'wpt_my_sampling_rate' );
 2. WP Tab Widget
 
 == Changelog ==
+
+= 1.2.11 [Oct 31, 2020] =
+* Fixed PHP notices when saving widget
+* Removed an option to show 'Powered by' credit in the frontend
 
 = 1.2.10 [June 30, 2018] =
 * Changed admin notices
