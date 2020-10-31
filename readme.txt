@@ -103,7 +103,7 @@ add_filter( 'wpt_sampling_rate', 'wpt_my_sampling_rate' );
 
 = 1.2.11 [Oct 31, 2020] =
 * Fixed PHP notices when saving widget
-* Removed Show Show Love checkbox
+* Removed an option to show 'Powered by' credit in the frontend
 
 = 1.2.10 [June 30, 2018] =
 * Changed admin notices
