@@ -86,15 +86,15 @@ if ( !class_exists('wpt_widget') ) {
 						<?php _e( 'Popular Tab', 'wp-tab-widget' ); ?>
 					</label>
 					<label class="alignleft" style="display: block; width: 50%; margin-bottom: 5px;" for="<?php echo $this->get_field_id( 'tabs' ); ?>_recent">
-						<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'tab' ); ?>_recent" name="<?php echo $this->get_field_name( 'tab' ); ?>[recent]" value="1" <?php if ( isset( $tabs['recent'] ) ) { checked( 1, $tabs['recent'], true ); } ?> />
+						<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'tabs' ); ?>_recent" name="<?php echo $this->get_field_name( 'tabs' ); ?>[recent]" value="1" <?php if ( isset( $tabs['recent'] ) ) { checked( 1, $tabs['recent'], true ); } ?> />
 						<?php _e( 'Recent Tab', 'wp-tab-widget' ); ?>
 					</label>
-					<label class="alignleft" style="display: block; width: 50%;" for="<?php echo $this->get_field_id( 'tab' ); ?>_comments">
-						<input type="checkbox" class="checkbox wpt_enable_comments" id="<?php echo $this->get_field_id( 'tab' ); ?>_comments" name="<?php echo $this->get_field_name( 'tab' ); ?>[comments]" value="1" <?php if ( isset( $tabs['comments'] ) ) { checked( 1, $tabs['comments'], true ); } ?> />
+					<label class="alignleft" style="display: block; width: 50%;" for="<?php echo $this->get_field_id( 'tabs' ); ?>_comments">
+						<input type="checkbox" class="checkbox wpt_enable_comments" id="<?php echo $this->get_field_id( 'tabs' ); ?>_comments" name="<?php echo $this->get_field_name( 'tabs' ); ?>[comments]" value="1" <?php if ( isset( $tabs['comments'] ) ) { checked( 1, $tabs['comments'], true ); } ?> />
 						<?php _e( 'Comments Tab', 'wp-tab-widget'); ?>
 					</label>
-					<label class="alignleft" style="display: block; width: 50%;" for="<?php echo $this->get_field_id( 'tab' ); ?>_tags">
-						<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'tab' ); ?>_tags" name="<?php echo $this->get_field_name( 'tab' ); ?>[tags]" value="1" <?php if ( isset( $tabs['tags'] ) ) { checked( 1, $tabs['tags'], true ); } ?> />
+					<label class="alignleft" style="display: block; width: 50%;" for="<?php echo $this->get_field_id( 'tabs' ); ?>_tags">
+						<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'tabs' ); ?>_tags" name="<?php echo $this->get_field_name( 'tabs' ); ?>[tags]" value="1" <?php if ( isset( $tabs['tags'] ) ) { checked( 1, $tabs['tags'], true ); } ?> />
 						<?php _e( 'Tags Tab', 'wp-tab-widget' ); ?>
 					</label>
 				</div>
@@ -166,21 +166,21 @@ if ( !class_exists('wpt_widget') ) {
 
 						<p>
 							<label for="<?php echo $this->get_field_id( 'show_date' ); ?>">
-								<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" value="1" <?php if (isset($show_date)) { checked( 1, $show_date, true ); } ?> />
+								<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" value="1" <?php if ( isset( $show_date ) ) { checked( 1, $show_date, true ); } ?> />
 								<?php _e( 'Show post date', 'wp-tab-widget' ); ?>
 							</label>
 						</p>
 
 						<p>
 							<label for="<?php echo $this->get_field_id( 'show_comment_num' ); ?>">
-								<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'show_comment_num' ); ?>" name="<?php echo $this->get_field_name( 'show_comment_num' ); ?>" value="1" <?php if (isset($show_comment_num)) { checked( 1, $show_comment_num, true ); } ?> />
+								<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id( 'show_comment_num' ); ?>" name="<?php echo $this->get_field_name( 'show_comment_num' ); ?>" value="1" <?php if ( isset($show_comment_num ) ) { checked( 1, $show_comment_num, true ); } ?> />
 								<?php _e( 'Show number of comments', 'wp-tab-widget' ); ?>
 							</label>
 						</p>
 
 						<p>
 							<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>">
-								<input type="checkbox" class="checkbox wpt_show_excerpt" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php if (isset($show_excerpt)) { checked( 1, $show_excerpt, true ); } ?> />
+								<input type="checkbox" class="checkbox wpt_show_excerpt" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php if ( isset( $show_excerpt ) ) { checked( 1, $show_excerpt, true ); } ?> />
 								<?php _e( 'Show post excerpt', 'wp-tab-widget' ); ?>
 							</label>
 						</p>
@@ -222,19 +222,19 @@ if ( !class_exists('wpt_widget') ) {
 
 		public function update( $new_instance, $old_instance ) {
 			$instance = $old_instance;
-			$instance['tabs'] = $new_instance['tabs'];
+			$instance['tabs'] = isset( $new_instance['tabs'] ) ? $new_instance['tabs'] : array();
 			$instance['tab_order'] = $new_instance['tab_order'];
-			$instance['allow_pagination'] = $new_instance['allow_pagination'];
+			$instance['allow_pagination'] = isset( $new_instance['allow_pagination'] ) ? $new_instance['allow_pagination'] : '';
 			$instance['post_num'] = $new_instance['post_num'];
 			$instance['title_length'] = $new_instance['title_length'];
 			$instance['comment_num'] =  $new_instance['comment_num'];
-			$instance['show_thumb'] = $new_instance['show_thumb'];
+			$instance['show_thumb'] = isset( $new_instance['show_thumb'] ) ? $new_instance['show_thumb'] : '';
 			$instance['thumb_size'] = $new_instance['thumb_size'];
-			$instance['show_date'] = $new_instance['show_date'];
-			$instance['show_excerpt'] = $new_instance['show_excerpt'];
+			$instance['show_date'] = isset( $new_instance['show_date'] ) ? $new_instance['show_date'] : '';
+			$instance['show_excerpt'] = isset( $new_instance['show_excerpt'] ) ? $new_instance['show_excerpt'] : '';
 			$instance['excerpt_length'] = $new_instance['excerpt_length'];
-			$instance['show_comment_num'] = $new_instance['show_comment_num'];
-			$instance['show_avatar'] = $new_instance['show_avatar'];
+			$instance['show_comment_num'] = isset( $new_instance['show_comment_num'] ) ? $new_instance['show_comment_num'] : '';
+			$instance['show_avatar'] = isset( $new_instance['show_avatar'] ) ? $new_instance['show_avatar'] : '';
 			return $instance;
 		}
 
