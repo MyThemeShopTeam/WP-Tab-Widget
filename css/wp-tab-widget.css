@@ -99,6 +99,12 @@ Author URI: http://mythemeshop.com/
     height: 65px;
     overflow: hidden;
 }
+.wpt_thumb_medium {
+    float: left;    
+    padding-top: 4px;
+    max-width: 80px;    
+    overflow: hidden;    
+}
 .wpt_thumb_large {
     float: none;
     max-width: 100%;
@@ -109,11 +115,14 @@ Author URI: http://mythemeshop.com/
 .wpt_widget_content .entry-title {
     font-weight: bold;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 90px;
 }
 .wpt_widget_content .wpt-postmeta, .wpt_comment_content, .wpt_excerpt {
     color: #999;
     font-size: 13px;
+}
+.wpt_widget_content .wpt-postmeta{
+    padding-left: 90px;
 }
 .wpt_widget_content .wp-post-image {
     margin: 0 !important;

@@ -160,6 +160,7 @@ if ( !class_exists('wpt_widget') ) {
 							<label for="<?php echo $this->get_field_id('thumb_size'); ?>"><?php _e( 'Thumbnail size:', 'wp-tab-widget' ); ?></label>
 							<select id="<?php echo $this->get_field_id('thumb_size'); ?>" name="<?php echo $this->get_field_name( 'thumb_size' ); ?>" style="margin-left: 12px;">
 								<option value="small" <?php selected( $thumb_size, 'small', true ); ?>><?php _e( 'Small', 'wp-tab-widget' ); ?></option>
+								<option value="medium" <?php selected( $thumb_size, 'medium', true ); ?>><?php _e( 'WP Medium', 'wp-tab-widget' ); ?></option>
 								<option value="large" <?php selected( $thumb_size, 'large', true ); ?>><?php _e( 'Large', 'wp-tab-widget' ); ?></option>
 							</select>
 						</p>
@@ -344,7 +345,7 @@ if ( !class_exists('wpt_widget') ) {
 			}
 			$show_thumb = isset( $args['show_thumb'] ) ? $args['show_thumb'] : 0;
 			$thumb_size = isset( $args['thumb_size'] ) ? $args['thumb_size'] : 'small';
-			if ( $thumb_size != 'small' && $thumb_size != 'large' ) {
+			if ( $thumb_size != 'small' && $thumb_size != 'large' && $thumb_size != 'medium' ) {
 					$thumb_size = 'small'; // default
 			}
 			$show_date = isset( $args['show_date'] ) ? $args['show_date'] : 1;
